@@ -45,13 +45,13 @@ end
 local plr = game.Players.LocalPlayer
 local physicSettings = settings().Physics
 local renderStepped = game:GetService("RunService").RenderStepped
-renderStepped:Connect(function()
-    physicSettings.PhysicsEnvironmentalThrottle = Enum.EnviromentalPhysicsThrottle.Disabled
-    physicSettings.AllowSleep = false
-    plr.ReplicationFocus = workspace
-    sethiddenproperty(plr,"SimulationRadius",1000)
-    sethiddenproperty(plr,"MaxSimulationRadius",1000)
+for i,v in next, game:GetService("Players").LocalPlayer.Character:GetDescendants() do
+if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
+game:GetService("RunService").Heartbeat:connect(function()
+v.Velocity = Vector3.new(-30,0,0)
 end)
+end
+end
 warn "[+] Gateway 'A' bypassed."
 if _G.netted ~= true then
 	_G.netted = true

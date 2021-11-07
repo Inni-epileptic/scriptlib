@@ -1,7 +1,12 @@
 --// Inni's Immortality lord \\ --
 
+-- // Hats \\ --
+-- || Hat: https://www.roblox.com/catalog/24341406 || --
+-- || Sword: https://www.roblox.com/catalog/4506945409 || --
+-- \\ Hats // --
+
 -- // It's open source so enjoy, and I hope you learn how FE animations works! \\ --
--- // Credits to Mizt for the reanimation. \\ --
+-- \\ Credits to Mizt for the reanimation. // --
 
 -- // Soundtracks \\ --
 --Hold Q to change the Soundtrack!
@@ -16,17 +21,17 @@
 -- // Options \\ --
 --Audio \\
 _G.OnlyTorso = false -- If you want the soundtrack to play throughout the game, change to false
-local AudioId = '2955195911' -- The ID of the soundtrack you want by default.
+local AudioId = '3411987420' -- The ID of the soundtrack you want by default.
 -- Audio //
 
 --Gameplay \\
-local ToolName = 'BladeMasterAccessory' -- The name of the sword that you want to use/animate. You can find the name of your sword by executing Dex Explorer
-local HatName = 'Socialite' --The name of the secondary hat.
+local ToolName = 'MeshPartAccessory' -- The name of the sword that you want to use/animate. You can find the name of your sword by executing Dex Explorer
+local HatName = 'Socialite' --The name of the secondary hat. [Recommended 'Socialite']
 --or DarkDex Go to Workspace -> Find your name -> Open it -> And copy the name of your sword
 --Gameplay //
 -- // Options \\ --
 
---// Some Variables \\ --
+-- // Some Variables \\  --
 local Time1 = 22
 local Time2 = 18
 ANGLES = CFrame.Angles
@@ -51,7 +56,7 @@ local rHost = "rbxassetid://"
 local GetModelId = '5325226148'
 local guiService = game:GetService("StarterGui")
 local LocalPlayer = game.Players.LocalPlayer
---// Some Variables \\ --
+-- \\ Some Variables // --
 
 cmd.Name = "cmd"
 cmd.Parent = game:GetService("CoreGui")
@@ -323,12 +328,12 @@ SWORDLERP.C0 = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0), mat
 
 -- \\ LERPS // --
 
-function swait(num)
-	if num == 0 or num == nil then
-		game:service("RunService").Stepped:wait(0)
+function SteppedWait(NumberValue)
+	if NumberValue == 0 or NumberValue == nil then
+		game:GetService("RunService").Stepped:wait()
 	else
-		for i = 0, num do
-			game:service("RunService").Stepped:wait(0)
+		for i = 0, NumberValue do
+			game:GetService("RunService").Stepped:wait()
 		end
 	end
 end
@@ -405,7 +410,7 @@ elseif position == "idle2" then
 change = 1.3
 
 end
-swait()
+SteppedWait()
 end
 end)()
 

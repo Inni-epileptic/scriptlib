@@ -20,7 +20,7 @@
 
 -- // Options \\ --
 --Audio \\
-_G.OnlyTorso = false -- If you want the soundtrack to play throughout the game, change to false
+_G.OnlyTorso = true -- If you want the soundtrack to play throughout the game, change to false
 local AudioId = '3411987420' -- The ID of the soundtrack you want by default.
 -- Audio //
 
@@ -106,8 +106,8 @@ sethiddenproperty(LPlayer,"SimulationRadius",1.0000000331814e+32)
 for i,v in next, LPChar:GetDescendants() do
 if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
 game:GetService("RunService").Heartbeat:connect(function()
-v.Velocity = V3.new(-30, 0, 0)
-wait(0.5)
+v.Velocity = V3.new(0, -30, 0)
+wait()
 end)
 end
 end

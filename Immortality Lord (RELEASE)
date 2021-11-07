@@ -1,0 +1,412 @@
+--// Inni's Immortality lord \\ --
+
+-- // It's open source so enjoy, and I hope you learn how FE animations works! \\ --
+-- // Credits to Mizt for the reanimation. \\ --
+
+-- // Soundtracks \\ --
+--Hold Q to change the Soundtrack!
+--Paste the ID and press Enter.
+--Default: LEMMiNO - Infinity [3411987420]
+--Soundtrack 2: LEMMiNO - Cipher [6243110329]
+--Soundtrack 3: LEMMiNO - Blackout [6177083013]
+--Soundtrack 4: Chill Lofi Hip [2955195911]
+--For more soundtracks visit: https://www.roblox.com/develop/library?CatalogContext=2&SortAggregation=5&LegendExpanded=true&Category=9
+-- // Soundtracks \\ -- 
+
+-- // Options \\ --
+--Audio \\
+_G.OnlyTorso = false -- If you want the soundtrack to play throughout the game, change to false
+local AudioId = '2955195911' -- The ID of the soundtrack you want by default.
+-- Audio //
+
+--Gameplay \\
+local ToolName = 'BladeMasterAccessory' -- The name of the sword that you want to use/animate. You can find the name of your sword by executing Dex Explorer
+local HatName = 'Socialite' --The name of the secondary hat.
+--or DarkDex Go to Workspace -> Find your name -> Open it -> And copy the name of your sword
+--Gameplay //
+-- // Options \\ --
+
+--// Some Variables \\ --
+local Time1 = 22
+local Time2 = 18
+ANGLES = CFrame.Angles
+HUGE = math.huge
+RAD = math.rad
+SIN = math.sin
+V3 = Vector3
+IN = Instance.new
+lstring = loadstring
+C3 = Color3
+LPlayer = game:GetService("Players").LocalPlayer
+LPChar = LPlayer.Character
+local cmd = IN("ScreenGui")
+local Frame = IN("Frame")
+local UICorner = IN("UICorner")
+local TextBox = IN("TextBox")
+local UICorner_2 = IN("UICorner")
+local Frame_2 = IN("Frame")
+local UICorner_3 = IN("UICorner")
+local TextLabel = IN("TextLabel")
+local rHost = "rbxassetid://"
+local GetModelId = '5325226148'
+local guiService = game:GetService("StarterGui")
+local LocalPlayer = game.Players.LocalPlayer
+--// Some Variables \\ --
+
+cmd.Name = "cmd"
+cmd.Parent = game:GetService("CoreGui")
+cmd.Enabled = false
+cmd.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = cmd
+Frame.BackgroundColor3 = C3.fromRGB(49, 49, 49)
+Frame.Position = UDim2.new(0.010416666, 0, 0.90220046, 0)
+Frame.Size = UDim2.new(0, 405, 0, 89)
+
+UICorner.Parent = Frame
+
+TextBox.Parent = Frame
+TextBox.BackgroundColor3 = C3.fromRGB(112, 112, 112)
+TextBox.Position = UDim2.new(0.175653845, 0, 0.21348314, 0)
+TextBox.Size = UDim2.new(0, 321, 0, 50)
+TextBox.Font = Enum.Font.GothamBold
+TextBox.Text = ""
+TextBox.TextColor3 = C3.fromRGB(255, 255, 255)
+TextBox.TextSize = 18.000
+
+UICorner_2.Parent = TextBox
+
+Frame_2.Parent = Frame
+Frame_2.BackgroundColor3 = C3.fromRGB(112, 112, 112)
+Frame_2.Position = UDim2.new(0.0289767049, 0, 0.213483825, 0)
+Frame_2.Size = UDim2.new(0, 41, 0, 50)
+
+UICorner_3.Parent = Frame_2
+
+TextLabel.Parent = Frame_2
+TextLabel.BackgroundColor3 = C3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.Size = UDim2.new(0, 41, 0, 50)
+TextLabel.Font = Enum.Font.GothamBold
+TextLabel.Text = "ID"
+TextLabel.TextColor3 = C3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 14.000
+
+
+sethiddenproperty(LPlayer,"MaximumSimulationRadius",HUGE)
+sethiddenproperty(LPlayer,"SimulationRadius",1.0000000331814e+32)
+
+-- // NETLESS \\ --
+
+for i,v in next, LPChar:GetDescendants() do
+if v:IsA("BasePart") and v.Name ~="HumanoidRootPart" then 
+game:GetService("RunService").Heartbeat:connect(function()
+v.Velocity = V3.new(-30, 0, 0)
+wait(0.5)
+end)
+end
+end
+
+-- \\ NETLESS // --
+
+-- \\ FLING CONFIGURATION // --
+
+local Fling = true
+local FlingBlockInvisible = true
+local HighlightFlingBlock = true
+local FlingHighlightColor = C3.fromRGB(0,0,0)
+ 
+-- \\ FLING CONFIGURATION // --
+
+-- // REANIMATION \\ --
+ 
+Bypass = "death"
+lstring(game:GetObjects(rHost .. GetModelId)[1].Source)() --Credits to Mizt
+e = IN("BodyVelocity",LPChar.HumanoidRootPart)
+e.Velocity = V3.new(0,-25.05,0)
+e.P = HUGE
+ 
+-- \\ REANIMATION // --
+
+
+local IsDead = false
+local StateMover = true
+ 
+local playerss = workspace.non
+local bbv,bullet
+if Bypass == "death" then
+	bullet = LPChar["HumanoidRootPart"]
+	bullet.Transparency = (FlingBlockInvisible ~= true and 0 or 1)
+	bullet.Massless = true
+	if bullet:FindFirstChildOfClass("Attachment") then
+		for _,v in pairs(bullet:GetChildren()) do
+			if v:IsA("Attachment") then
+				v:Destroy()
+			end
+		end
+	end
+ 
+	bbv = IN("BodyPosition",bullet)
+    bbv.Position = playerss.Torso.Position
+end
+ 
+if Bypass == "death" then
+coroutine.wrap(function()
+	while true do
+		if not playerss or not playerss:FindFirstChildOfClass("Humanoid") or playerss:FindFirstChildOfClass("Humanoid").Health <= 0 then IsDead = true; return end
+		if StateMover then
+			bbv.Position = playerss.Torso.Position
+    		bullet.Position = playerss.Torso.Position
+		end
+		game:GetService("RunService").RenderStepped:wait()
+	end
+end)()
+end
+
+if HighlightFlingBlock ~= false then
+    local Highlight = Instance.new("SelectionBox")
+    Highlight.Adornee = bullet
+    Highlight.Color3 = (typeof(FlingHighlightColor)=="Color3" and FlingHighlightColor) or (Color3.fromRGB(0,0,0))
+    Highlight.Parent = bullet
+    Highlight.Name = "HighlightBox"
+end
+ 
+bbav = Instance.new("BodyAngularVelocity",bullet)
+    bbav.MaxTorque = Vector3.new(HUGE,HUGE,HUGE)
+    bbav.P = 100000000000000000000000000000
+    bbav.AngularVelocity = V3.new(90000000000000000000000000000000000,90000000000000000000000000000000000,90000000000000000000000000000000000)
+
+local Player=game.Players.LocalPlayer 
+local Character=workspace.non 
+local hum = Character.Humanoid
+local Sword=Character[ToolName].Handle
+local pog=Character[HatName].Handle
+local LeftArm=Character["Left Arm"] 
+local LeftLeg=Character["Left Leg"] 
+local RightArm=Character["Right Arm"] 
+local RightLeg=Character["Right Leg"] 
+local Root=Character["HumanoidRootPart"] 
+local Head=Character["Head"] 
+local Torso=Character["Torso"] 
+local Neck=Torso["Neck"] 
+local mouse = Player:GetMouse() 
+local position = nil 
+local sine = 0 
+local t = 0 
+local change = 1
+
+-- // SOUNDTRACK SYSTEM \\ --
+
+if _G.OnlyTorso == true then
+local Audio = IN("Sound", Torso)
+Audio.Name = 'Soundtrack'
+Audio.SoundId = rHost .. AudioId
+Audio.Volume = 3
+Audio.Playing = true
+Audio.Looped = true
+local function Function1()
+	local script = Instance.new('LocalScript', cmd)
+
+	local UserInputService = game:GetService("UserInputService")
+	local textBox = script.Parent.Frame.TextBox
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		if gameProcessed == true then return end
+		if input.KeyCode == Enum.KeyCode.Q then
+			script.Parent.Enabled = true
+		end
+	end)
+	UserInputService.InputEnded:Connect(function(input, gameProcessed)
+		if gameProcessed == true then return end
+		if input.KeyCode == Enum.KeyCode.Q then
+			script.Parent.Enabled = false
+		end
+	end)
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		if gameProcessed == true then return end
+		if input.KeyCode == Enum.KeyCode.Return then
+			Audio.SoundId = rHost .. textBox.Text
+		end
+	end)
+end
+coroutine.wrap(Function1)()
+end
+if _G.OnlyTorso == false then
+local Audio = IN("Sound", workspace)
+Audio.Name = 'Soundtrack'
+Audio.SoundId = rHost .. AudioId
+Audio.Volume = 3
+Audio.Playing = true
+Audio.Looped = true
+local function Function1()
+	local script = Instance.new('LocalScript', cmd)
+
+	local UserInputService = game:GetService("UserInputService")
+	local textBox = script.Parent.Frame.TextBox
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		if gameProcessed == true then return end
+		if input.KeyCode == Enum.KeyCode.Q then
+			script.Parent.Enabled = true
+		end
+	end)
+	UserInputService.InputEnded:Connect(function(input, gameProcessed)
+		if gameProcessed == true then return end
+		if input.KeyCode == Enum.KeyCode.Q then
+			script.Parent.Enabled = false
+		end
+	end)
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		if gameProcessed == true then return end
+		if input.KeyCode == Enum.KeyCode.Return then
+			Audio.SoundId = rHost .. textBox.Text
+		end
+	end)
+end
+coroutine.wrap(Function1)()
+end
+
+-- \\ SOUNDTRACK SYSTEM // --
+
+-- // LERPS \\ --
+
+local HEADLERP = IN("ManualWeld")
+HEADLERP.Parent = Head
+HEADLERP.Part0 = Head
+HEADLERP.Part1 = Torso
+HEADLERP.C0 = CFrame.new(0, -1.5, -0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0))
+
+local POGLERP = IN("ManualWeld")
+POGLERP.Parent = pog
+POGLERP.Part0 = pog
+POGLERP.Part1 = Head
+POGLERP.C0 = CFrame.new(0, -1.5, -0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0))
+
+local TORSOLERP = IN("ManualWeld")
+TORSOLERP.Parent = Root
+TORSOLERP.Part0 = Torso
+TORSOLERP.C0 = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0))
+
+local ROOTLERP = IN("ManualWeld")
+ROOTLERP.Parent = Root
+ROOTLERP.Part0 = Root
+ROOTLERP.Part1 = Torso
+ROOTLERP.C0 = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0))
+ 
+local RIGHTARMLERP = IN("ManualWeld")
+RIGHTARMLERP.Parent = RightArm
+RIGHTARMLERP.Part0 = RightArm
+RIGHTARMLERP.Part1 = Torso
+RIGHTARMLERP.C0 = CFrame.new(-1.5, 0, -0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0))
+ 
+local LEFTARMLERP = IN("ManualWeld")
+LEFTARMLERP.Parent = LeftArm
+LEFTARMLERP.Part0 = LeftArm
+LEFTARMLERP.Part1 = Torso
+LEFTARMLERP.C0 = CFrame.new(1.5, 0, -0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0))
+ 
+local RIGHTLEGLERP = IN("ManualWeld")
+RIGHTLEGLERP.Parent = RightLeg
+RIGHTLEGLERP.Part0 = RightLeg
+RIGHTLEGLERP.Part1 = Torso
+RIGHTLEGLERP.C0 = CFrame.new(-0.5, 2, 0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0))
+ 
+local LEFTLEGLERP = IN("ManualWeld")
+LEFTLEGLERP.Parent = LeftLeg
+LEFTLEGLERP.Part0 = LeftLeg
+LEFTLEGLERP.Part1 = Torso
+LEFTLEGLERP.C0 = CFrame.new(0.5, 2, 0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0))
+
+local SWORDLERP = IN("ManualWeld")
+SWORDLERP.Parent = Sword
+SWORDLERP.Part0 = Sword
+SWORDLERP.Part1 = Torso
+SWORDLERP.C0 = CFrame.new(0, 0, 0) * CFrame.Angles(math.rad(0), math.rad(0), math.rad(0))
+
+-- \\ LERPS // --
+
+function swait(num)
+	if num == 0 or num == nil then
+		game:service("RunService").Stepped:wait(0)
+	else
+		for i = 0, num do
+			game:service("RunService").Stepped:wait(0)
+		end
+	end
+end
+
+m = game.Players.LocalPlayer:GetMouse()
+idle = true
+
+toggle = false
+
+-- // ANIMATIONS \\ --
+
+coroutine.wrap(function() -------Checks
+while true do
+if idle then
+if Root.Velocity.y > 1 then
+position = "jump"
+elseif Root.Velocity.y < -1 then
+position = "fall"
+elseif Root.Velocity.Magnitude < 2 then
+position = "idle"
+elseif Root.Velocity.Magnitude < 20 then
+position = "walk"
+elseif Root.Velocity.Magnitude > 20 then
+position = "run"
+end
+end
+wait()
+end
+end)()
+
+
+-- // ANIMATIONS \\ --
+-- || To make more animations, learn how to use cframes. Please visit this website: || -- 
+-- || https://developer.roblox.com/en-us/api-reference/datatype/CFrame || --
+
+coroutine.wrap(function()
+while true do
+sine = sine + change
+if position == "idle" then
+            change = 1
+            POGLERP.C0 = POGLERP.C0:lerp(CFrame.new(0, -0.5, -0) * ANGLES(RAD(10 + -3 * SIN(sine/Time1)), 0, 0), 0.1)
+            HEADLERP.C0 = HEADLERP.C0:lerp(CFrame.new(0.3, -1.5, 0) * ANGLES(RAD(0), RAD(0), RAD(10 + -20 * SIN(sine/0.5))), 0.1)
+            SWORDLERP.C0 = SWORDLERP.C0:lerp(CFrame.new(2.3, 2.7, -1.5) * ANGLES(RAD(0),RAD(-90), RAD(0)), 0.1)
+            ROOTLERP.C0 = ROOTLERP.C0:lerp(CFrame.new(0, 3 + 1 * SIN(sine/22), 0) * ANGLES(RAD(-13), 0, 0),0.1)
+			RIGHTARMLERP.C0 = RIGHTARMLERP.C0:lerp(CFrame.new(-1.5, 0.2, -0.3) * ANGLES(RAD(30 + 5 * SIN(sine/Time1)), RAD(0), RAD(0)),0.1)
+			RIGHTLEGLERP.C0 = RIGHTLEGLERP.C0:lerp(CFrame.new(-0.4,2,-0.2) *  ANGLES(RAD(-14 + -3 * SIN(sine/Time1)), 0, RAD(-3)), 0.1)
+			LEFTARMLERP.C0 = LEFTARMLERP.C0:lerp(CFrame.new(1.5, 1, 0) * ANGLES(RAD(190), RAD(30), 0),0.1)
+			LEFTLEGLERP.C0 = LEFTLEGLERP.C0:lerp(CFrame.new(0.4,2,-0.2) * ANGLES(RAD(-14 + -3 *SIN(sine/Time1)), 0, RAD(3)), 0.1)
+elseif position == "walk" then
+change = 1
+            POGLERP.C0 = POGLERP.C0:lerp(CFrame.new(0, -0.5, -0) * ANGLES(RAD(10 + -3 * SIN(sine/Time1)), 0, 0), 0.1)
+            HEADLERP.C0 = HEADLERP.C0:lerp(CFrame.new(0.3, -1.5, 0) * ANGLES(RAD(0), RAD(0), RAD(10 + -20 * SIN(sine/0.5))), 0.1)
+            SWORDLERP.C0 = SWORDLERP.C0:lerp(CFrame.new(2.3, 2.7, -1.5) * ANGLES(RAD(0),RAD(-90), RAD(0)), 0.1)
+            ROOTLERP.C0 = ROOTLERP.C0:lerp(CFrame.new(0, 3 + 1 * SIN(sine/22), 0) * ANGLES(RAD(-13), 0, 0),0.1)
+			RIGHTARMLERP.C0 = RIGHTARMLERP.C0:lerp(CFrame.new(-1.5, 0.2, -0.3) * ANGLES(RAD(30 + 5 * SIN(sine/Time1)), RAD(0), RAD(0)),0.1)
+			RIGHTLEGLERP.C0 = RIGHTLEGLERP.C0:lerp(CFrame.new(-0.4,2,-0.2) *  ANGLES(RAD(-14 + -3 * SIN(sine/Time1)), 0, RAD(-3)), 0.1)
+			LEFTARMLERP.C0 = LEFTARMLERP.C0:lerp(CFrame.new(1.5, 1, 0) * ANGLES(RAD(190), RAD(30), 0),0.1)
+			LEFTLEGLERP.C0 = LEFTLEGLERP.C0:lerp(CFrame.new(0.4,2,-0.2) * ANGLES(RAD(-14 + -3 *SIN(sine/Time1)), 0, RAD(3)), 0.1)
+elseif position == "run" then
+change = 5
+            POGLERP.C0 = POGLERP.C0:lerp(CFrame.new(0, -0.5, -0) * ANGLES(RAD(10 + -3 * SIN(sine/Time1)), 0, 0), 0.1)
+            HEADLERP.C0 = HEADLERP.C0:lerp(CFrame.new(0.3, -1.5, 0) * ANGLES(RAD(0), RAD(0), RAD(10 + -20 * SIN(sine/0.5))), 0.1)
+            SWORDLERP.C0 = SWORDLERP.C0:lerp(CFrame.new(2.3, 2.7, -1.5) * ANGLES(RAD(0),RAD(-90), RAD(0)), 0.1)
+            ROOTLERP.C0 = ROOTLERP.C0:lerp(CFrame.new(0, 3 + 1 * SIN(sine/22), 0) * ANGLES(RAD(-13), 0, 0),0.1)
+			RIGHTARMLERP.C0 = RIGHTARMLERP.C0:lerp(CFrame.new(-1.5, 0.2, -0.3) * ANGLES(RAD(30 + 5 * SIN(sine/Time1)), RAD(0), RAD(0)),0.1)
+			RIGHTLEGLERP.C0 = RIGHTLEGLERP.C0:lerp(CFrame.new(-0.4,2,-0.2) *  ANGLES(RAD(-14 + -3 * SIN(sine/Time1)), 0, RAD(-3)), 0.1)
+			LEFTARMLERP.C0 = LEFTARMLERP.C0:lerp(CFrame.new(1.5, 1, 0) * ANGLES(RAD(190), RAD(30), 0),0.1)
+			LEFTLEGLERP.C0 = LEFTLEGLERP.C0:lerp(CFrame.new(0.4,2,-0.2) * ANGLES(RAD(-14 + -3 *SIN(sine/Time1)), 0, RAD(3)), 0.1)
+elseif position == "jump" then
+--clerp here
+elseif position == "fall" then
+--clerp here
+elseif position == "idle2" then
+change = 1.3
+
+end
+swait()
+end
+end)()
+
+-- \\ ANIMATIONS // --
